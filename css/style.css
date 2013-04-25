@@ -34,3 +34,61 @@ body {
 .span3 {
 	/*border-left: 1px dashed black;*/
 }
+
+/*******************
+AviaSlide formatting
+*******************/
+.aviaslider
+{ 
+	height:290px; 	/*this changes the height of the image slider*/
+	width:770px;
+	overflow: hidden;
+	position: relative;
+}
+
+.aviaslider li, .aviaslider .featured
+{
+	display: block;
+	width:100%;
+	height:100%;
+	position: absolute;
+	top:0;
+	left:0;
+	z-index: 1;
+}
+
+.js_active .aviaslider li, .js_active .aviaslider .featured
+{
+	display:none;
+}
+
+.slidecontrolls
+{
+	margin:0px auto 0 auto;
+	float:left;
+}
+
+.slidecontrolls a
+{
+	height:20px;
+	width:18px;
+	display:block;
+	cursor: pointer;
+	background: transparent url(img/controlls.gif) center bottom no-repeat;
+	float:left;
+	outline: none;
+}
+
+.slidecontrolls a:hover, .slidecontrolls .active_item
+{
+	background: transparent url(img/controlls.gif) center top no-repeat;		
+}
+
+#splashbox
+{
+	position: relative;
+	height: 290px;
+	/*border:1px solid blue;*/
+	z-index:1;
+	background-image: url('img/colorBox.jpg');
+}
