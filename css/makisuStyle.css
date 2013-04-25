@@ -1,5 +1,5 @@
 /*MAKISU STYLING*/
-html, body {
+#container {
 
     -webkit-font-smoothing: antialiased !important;
     -moz-font-smoothing: antialiased !important;
@@ -7,8 +7,10 @@ html, body {
     padding: 0;
     margin: 0;
     height: 100%;
-    /*background: #e1e4e5 url('../img/bg.png');*/
     width: 900px;
+
+    margin:0px auto;
+    margin-top: 10px;
 }
 
 a {
@@ -25,10 +27,9 @@ a {
 .header {
 
     text-align: center;
-    position: absolute;
     color: #333;
     width: 100%;
-    top: 6%;
+    /*top: 2% !important;*/
 }
 
 .header h1 {
@@ -72,10 +73,8 @@ a {
     transform-style: preserve-3d;
     
     text-transform: uppercase;
-    position: absolute;
-    margin-left: -140px;
-    margin-top: -280px;
-    top: 55%;
+    /*margin-left: 10px;*/
+    float: left;
 }
 
 .list a {
@@ -90,19 +89,16 @@ a {
 }
 
 .list dt, .list dd {
-    /*this is where the width and properties of the actual lists are set*/
     text-indent: 10px;
     line-height: 55px;
     background: #E0FBAC;
     margin: 0;
     height: 55px;
-    width: 270px;
+    width: 300px;
     color: #fff;
 }
 
 .list dt {
-
-    /* Since we're hiding elements behind here, we need it in 3d */
     -webkit-transform: translateZ(0.3px);
     -moz-transform: translateZ(0.3px);
     -ms-transform: translateZ(0.3px);
@@ -216,8 +212,6 @@ a {
     -o-transform: perspective(600px) translateZ(1px) !important;
     transform: perspective(600px) translateZ(1px) !important;
 
-    left: 28%;
-    /*float: left;*/
 }
 
 .maki {
@@ -227,9 +221,6 @@ a {
     -ms-transform: perspective(600px) translateZ(1px) !important;
     -o-transform: perspective(600px) translateZ(1px) !important;
     transform: perspective(600px) translateZ(1px) !important;
-
-    left: 50%;
-    /*float: left;*/
 }
 
 .sashimi {
@@ -238,10 +229,6 @@ a {
     -ms-transform: perspective(600px) translateZ(1px) !important;
     -o-transform: perspective(600px) translateZ(1px) !important;
     transform: perspective(600px) translateZ(1px) !important;
-
-    left: 72%;
-    /*float: left;*/
-
 }
 
 /*PHELAN's STYLING*/
