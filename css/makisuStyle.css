@@ -90,7 +90,7 @@ a {
 }
 
 .list dt, .list dd {
-
+    /*this is where the width and properties of the actual lists are set*/
     text-indent: 10px;
     line-height: 55px;
     background: #E0FBAC;
