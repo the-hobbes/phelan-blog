@@ -1,0 +1,164 @@
+<!doctype html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title></title>
+		<meta name="description" content="">
+		<link rel="stylesheet" href="css/makisuStyle.css">
+	    <link href='http://fonts.googleapis.com/css?family=Days+One' rel='stylesheet' type='text/css'>
+	    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+	</head>
+
+	<body>
+	    <header class="header">
+	        <hgroup>
+	            <h1>Phelan's Blog</h1>
+	        </hgroup>
+	    </header> <!-- end header -->
+
+        <section class="navigation">
+
+	        <dl class="list nigiri">
+	            <dt class="clickableNigiri"><a href="#">Art</a></dt>
+	            <dd><a href="http://pheven.deviantart.com/">DeviantArt</a></dd>
+	            <dd><a href="http://phelanvendeville.blogspot.com/">Art Blog</a></dd>
+	            <dd class="nigiriRollup"><a href="#">Roll Up</a></dd>
+	        </dl>
+
+			<dl class="list maki">
+	            <dt class="clickableMaki"><a href="#">Programming</a></dt>
+	            <!-- note: the dt tag is used to describe a name, where the dd tag is used to describe a value for that name -->
+	            <dd><a href="https://github.com/the-hobbes/WebsiteWeekend">CS Crew</a></dd>
+	            <dd><a href="https://github.com/the-hobbes/EvolutionaryComputation">Evolutionary Computation</a></dd>
+	            <dd><a href="https://github.com/the-hobbes/HackVT">GreenBean (HackVT)</a></dd>
+	            <dd><a href="https://github.com/the-hobbes/nQueensProblem">GA Solution to N-Queens</a></dd>
+	            <dd><a href="https://github.com/the-hobbes/LimeAid">LimeAid</a></dd>
+	            <dd><a href="https://github.com/the-hobbes/Network-Backup">Tortise Backup</a></dd>
+	            <dd><a href="https://github.com/the-hobbes/softwareEngineeringFinalProject">Software Engineering</a></dd>
+	            <dd class="makiRollup"><a href="#">Roll Up</a></dd>
+			</dl><!-- end dl, where dl = definition list -->
+
+	        <dl class="list sashimi">
+	            <dt class="clickableSashimi"><a href="#">Other Links</a></dt>
+	            <dd><a href="https://github.com/the-hobbes">Github</a></dd>
+	            <dd><a href="https://plus.google.com/101551502170353479766
+">GooglePlus</a></dd>
+	            <dd><a href="https://twitter.com/PhelanVendevill">Twitter</a></dd>
+	            <dd class="sashimiRollup"><a href="#">Roll Up</a></dd>
+	        </dl>
+
+        </section><!-- end navigation section-->
+
+		<div class="warning">
+	        <div class="message">
+	            <h1>CSS 3D Not Detected :(</h1>
+	            <p>We couldn't detect your browser's CSS 3D capabilities. If we are wrong, please <a href="https://github.com/soulwire/Makisu/issues" target="_blank">file an issue</a>, otherwise, try a <a href="http://www.google.com/chrome" target="_blank">sexier browser</a></p>
+	        </div> <!-- end error message section -->
+	    </div> <!-- end warning section -->
+
+		<div class='container'>
+	    	<div id='content' class='row-fluid'>
+				<div class='main'>
+				<h3 class='title'>Add a post here</h3>
+				<h5 class='date'>This is the date</h5>
+				<p>
+					This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.
+					This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.
+				</p>
+				</div><!-- end post -->
+
+				<div class='main'>
+				<h3 class='title'>Add a post here</h3>
+				<h5 class='date'>This is the date</h5>
+				<p>
+					This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.
+					This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.
+				</p>
+				</div><!-- end post -->
+
+				<div class='main'>
+				<h3 class='title'>Add a post here</h3>
+				<h5 class='date'>This is the date</h5>
+				<p>
+					This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.
+					This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.This is text.
+				</p>
+				</div><!-- end post -->
+			</div><!-- end content -->
+	    </div><!-- end main content container -->
+
+<!-- begin javascript -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="../js/makisu.js"></script>
+    <script>
+
+        // The `enabled` flag will be `false` if CSS 3D isn't available
+
+        if ( $.fn.makisu.enabled ) {
+
+            var $sashimi = $( '.sashimi' );
+            var $nigiri = $( '.nigiri' );
+            var $maki = $( '.maki' );
+
+            // Create Makisus
+
+            $nigiri.makisu({
+                selector: 'dd',
+                overlap: 0.85,
+                speed: .7
+            });
+
+            $maki.makisu({
+                selector: 'dd',
+                overlap: 0.6,
+                speed: 0.5
+            });
+
+            $sashimi.makisu({
+                selector: 'dd',
+                overlap: 0.2,
+                speed: 0.3
+            });
+
+            // Toggle on click
+			// if the something with the clickable class is clicked, then call the toggle function
+
+            // NIGIRI menus
+            $( '.clickableNigiri' ).on( 'click', function() {
+                $nigiri.makisu( 'toggle' );
+            });   
+			// likewise with rollup (used to facilitate color changes)
+            $( '.nigiriRollup' ).on( 'click', function() {
+            	console.log("got here");
+                $nigiri.makisu( 'toggle' );
+            });
+
+			// MAKI menus
+			$( '.clickableMaki' ).on( 'click', function() {
+                $maki.makisu( 'toggle' );
+            });   
+			// likewise with rollup (used to facilitate color changes)
+            $( '.makiRollup' ).on( 'click', function() {
+                $maki.makisu( 'toggle' );
+            });
+
+            // SASHIMI menus
+            $( '.clickableSashimi' ).on( 'click', function() {
+                $sashimi.makisu( 'toggle' );
+            });   
+			// likewise with rollup (used to facilitate color changes)
+            $( '.sashimiRollup' ).on( 'click', function() {
+                $sashimi.makisu( 'toggle' );
+            });
+
+        } else {
+
+            $( '.warning' ).show();
+        }
+
+    </script>
+<!-- end javascript -->
+	</body>
+</html>

@@ -1,0 +1,28 @@
+/*Main container styling*/
+.container {
+	background-color: rgba(127, 136, 138, .2);
+	position: absolute !important;
+	top:23%;
+	left:17%;
+	width: 65%;
+	z-index: -1;
+	border:1px solid black;
+}
+
+.main {
+	padding:10px;
+	margin-bottom:5px;
+	margin-left:5px;
+	margin-top: 5px;
+	margin-right: 5px;
+	background-color: white;
+	border-radius: 15px;
+
+}
+
+.navigation {
+	position: relative;
+	top:100px;
+	height: 500px !important;
+	width:1280px;
+}
