@@ -40,6 +40,27 @@ body {
 	background: url("../img/main.jpg");
 }
 
+#triangle-bottomleft {
+	width: 0;
+	height: 0;
+	border-bottom: 195px solid rgba(255,255,255,.1);
+	border-right: 195px solid transparent;
+	margin-top: 5px;
+}
+
+.post {
+	width:600px;
+	margin-left:25px
+}
+
+.sideBar {
+	margin-left:690px;
+	/*border:1px solid black;*/
+}
+
+.sideBar img{
+	margin-bottom: 5px;
+}
 /*particle stuff*/
 .particle {z-index:99; position:absolute; width:15px; height:15px; -webkit-border-radius:15px; -webkit-transition:all .75s ease-out;}
 .particle.purple	{background-color:rgba(108, 000, 072, 1);}
