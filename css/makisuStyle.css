@@ -65,7 +65,7 @@ a {
 /* List styles */
 
 .list {
-
+    /*css 3d transforms*/
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     -ms-transform-style: preserve-3d;
