@@ -1,0 +1,60 @@
+<!doctype html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="description" content="">
+		<script src='../js/zepto.js'></script>
+		<script src='../js/utilities.js'></script>
+		<script src='../js/particles.js'></script>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+
+		<style type="text/css">
+			.particle {z-index:99; position:absolute; width:15px; height:15px; -webkit-border-radius:15px; -webkit-transition:all .75s ease-out;}
+			.particle.purple	{background-color:rgba(108, 000, 072, 1);}
+			.particle.green	{background-color:rgba(189, 190, 000, 1);}
+			.particle.yellow	{background-color:rgba(246, 197, 000, 1);}
+			.particle.orange	{background-color:rgba(221, 137, 000, 1);}
+			.particle.red 		{background-color:rgba(189, 058, 000, 1);}
+
+			#imageBox{width: 500px; height: 500px; border:1px solid black;	margin:0px auto; margin-top:100px;	}
+		</style>
+
+		<script>
+			$(function(){
+
+				function getBounds(){
+					var element = document.getElementById('imageBox');
+					var position = element.getBoundingClientRect();
+					
+					var x = position.left;
+					var y = position.top;
+					var w = position.right - position.left;
+	                var h = position.bottom - position.top;
+
+					return [x, y, w, h];
+				}
+
+				setInterval(function(){
+					var coords = getBounds();
+					// console.log(derp);
+
+					// var x = random_from_to(0, BROWSER.w);
+					// var y = random_from_to(0, BROWSER.h);
+
+					var x = random_from_to(coords[0], coords[2]);
+					var y = random_from_to(coords[1], coords[3]);
+
+					var particle = new Particles(x, y);
+				}, 2500);
+			});
+		</script>
+	</head>
+
+	<body>
+
+		<div id="imageBox">
+
+		</div> <!-- end imagebox -->
+
+	</body>
+</html>
