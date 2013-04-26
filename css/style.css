@@ -39,6 +39,7 @@ body {
 	height: 200px;
 	border: 1px solid black;
 	box-shadow: 5px 5px 5px #888888;
+	background: url("../img/main.jpg");
 }
 
 /*particle stuff*/
