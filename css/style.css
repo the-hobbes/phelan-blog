@@ -38,4 +38,13 @@ body {
 	width: 900px;
 	height: 200px;
 	border: 1px solid black;
+	box-shadow: 5px 5px 5px #888888;
 }
+
+/*particle stuff*/
+.particle {z-index:99; position:absolute; width:15px; height:15px; -webkit-border-radius:15px; -webkit-transition:all .75s ease-out;}
+.particle.purple	{background-color:rgba(108, 000, 072, 1);}
+.particle.green	{background-color:rgba(189, 190, 000, 1);}
+.particle.yellow	{background-color:rgba(246, 197, 000, 1);}
+.particle.orange	{background-color:rgba(221, 137, 000, 1);}
+.particle.red 		{background-color:rgba(189, 058, 000, 1);}

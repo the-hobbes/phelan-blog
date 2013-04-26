@@ -1,5 +1,12 @@
 <!doctype html>
 	<head>
+		<!-- 
+			THANKS TO!!
+			http://joelongstreet.com/blog/2011/08/02/css-animation-webkit-javascript-particle-effect/
+			for the awesome menu's
+			https://github.com/soulwire/Makisu 
+			for the particle effects
+		-->
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<title></title>
@@ -106,11 +113,41 @@
 <!-- begin javascript -->
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="../js/makisu.js"></script>
+	<script src='../js/zepto.js'></script>
+	<script src='../js/utilities.js'></script>
+	<script src='../js/particles.js'></script>
 
     <script>
+	    $(function(){
+	    	// **** document ready function for the particle effects ***** //
+			function getBounds(){
+				var element = document.getElementById('imageBox');
+				var position = element.getBoundingClientRect();
+				
+				var x = position.left;
+				var y = position.top;
+				var w = position.right - position.left;
+                var h = position.bottom - position.top;
+
+				return [x, y, w, h];
+			}
+
+			setInterval(function(){
+				var coords = getBounds();
+				// console.log(derp);
+
+				// var x = random_from_to(0, BROWSER.w);
+				// var y = random_from_to(0, BROWSER.h);
+
+				var x = random_from_to(coords[0], coords[2]);
+				var y = random_from_to(coords[1], coords[3]);
+
+				var particle = new Particles(x, y);
+			}, 2500);
+		});
+	    	// end particles, and start menus
 
         // The `enabled` flag will be `false` if CSS 3D isn't available
-
         if ( $.fn.makisu.enabled ) {
 
             var $sashimi = $( '.sashimi' );
