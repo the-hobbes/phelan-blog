@@ -1,0 +1,32 @@
+/*signup page styling*/
+body{
+	margin:0px auto;
+	width: 960px;
+	padding:15px;
+	margin-top:50px;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-font-smoothing: antialiased !important;
+    font-family: 'Days One', sans-serif !important;	font-family: sans-serif;
+
+    background: #ffffff;
+    background: -moz-radial-gradient(center, ellipse cover,  #ffffff 0%, #ffffff 26%, #f5f5f5 59%, #f5f5f5 77%, #cecece 100%);
+    background: -webkit-gradient(radial, center center, 0, center center, 100%, color-stop(0%,#ffffff), color-stop(26%,#ffffff), color-stop(59%,#f5f5f5), color-stop(77%,#f5f5f5), color-stop(100%,#cecece));
+    background: -webkit-radial-gradient(center, ellipse cover,  #ffffff 0%,#ffffff 26%,#f5f5f5 59%,#f5f5f5 77%,#cecece 100%);
+    background: -o-radial-gradient(center, ellipse cover,  #ffffff 0%,#ffffff 26%,#f5f5f5 59%,#f5f5f5 77%,#cecece 100%);
+    background: -ms-radial-gradient(center, ellipse cover,  #ffffff 0%,#ffffff 26%,#f5f5f5 59%,#f5f5f5 77%,#cecece 100%);
+    background: radial-gradient(ellipse at center,  #ffffff 0%,#ffffff 26%,#f5f5f5 59%,#f5f5f5 77%,#cecece 100%);
+}
+#signupPage {
+	margin:0px auto;
+	width: 500px;
+	border:1px solid black;
+	padding:10px;
+	text-align: center;
+	background-color: white;
+	box-shadow: 5px 5px 5px #888888;
+}
+table{
+	margin-left: 10%;
+}
+.label {text-align: right}
+.error {color: #E32551}
