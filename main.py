@@ -16,6 +16,7 @@
 #
 import webapp2
 from python.handler import *
+from python.signupHandler import *
 
 class MainHandler(Handler):
     def get(self):
@@ -24,4 +25,6 @@ class MainHandler(Handler):
     def renderLanding(self):
     	self.render("index.html")
 
-app = webapp2.WSGIApplication([ ('/', MainHandler) ], debug=True)
+app = webapp2.WSGIApplication([ ('/', MainHandler),
+								('/signup',SignupHandler)
+								 ], debug=True)

@@ -16,7 +16,7 @@ import logging
 
 #set templating directory with jinja. NOTE that jinja escapes html because autoescape = True
 template_dir = os.path.join(os.path.dirname(__file__), '../templates')
-jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir), autoescape = False)
+jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir), autoescape = True)
 
 class Handler(webapp2.RequestHandler):
 	'''
