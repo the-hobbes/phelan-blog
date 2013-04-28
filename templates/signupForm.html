@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Phelan Blog Signup</title>
+    <link rel="stylesheet" href="../css/signupStyle.css">
+    <link href='http://fonts.googleapis.com/css?family=Days+One' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+    <div id="signupPage">
+      <h2>Signup</h2>
+      <hr>
+      <form method="post">
+        <table>
+          <tr>
+            <td class="label">
+              Username
+            </td>
+            <td>
+              <input type="text" name="username" value="{{username}}">
+            </td>
+            <td class="error">
+              {{error_username}}
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              Password
+            </td>
+            <td>
+              <input type="password" name="password" value="">
+            </td>
+            <td class="error">
+              {{error_password}}
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              Verify Password
+            </td>
+            <td>
+              <input type="password" name="verify" value="">
+            </td>
+            <td class="error">
+              {{error_verify}}
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              Email (optional)
+            </td>
+            <td>
+              <input type="text" name="email" value="{{email}}">
+            </td>
+            <td class="error">
+              {{error_email}}
+            </td>
+          </tr>
+        </table>
+        <hr>
+        <input type="submit">
+      </form>
+    </div><!--  endsignupPage -->
+  </body>
+
+</html>
