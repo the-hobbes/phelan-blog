@@ -5,40 +5,33 @@ import hashlib
 import hmac
 import random
 import string
+import logging
 
 class Hasher():
-	# class variables
-
-	def __init__(self):
-		'''
-			Default Constructor
-		'''
-		
-
 	# functions related to hashing cookies and checking their veracity
-	def hashStr(s):
+	def hashStr(self, s):
 		'''
 			returns the hex digest of a hashed value s
 		'''
 		# using HMAC
 		return hmac.new(SECRET, s).hexdigest()
 
-	def makeSecureVal(s):
+	def makeSecureVal(self, s):
 		'''
 			returns the pair value,hash where value is s, and hash is the hash of s
 		'''
 		return "%s|%s" % (s, hashStr(s))
 
-	def checkSecureVal(h):
+	def checkSecureVal(self, h):
 		'''
 			takes h, which is a value and its hash in this format: "s,hash".
 			checks to make sure that the hash of s is equal to the hash. This is to make sure no one has tampered with s.
 		'''
 		val = h.split("|")
-		if h == makeSecureVal(val[0]):
+		if h == self.makeSecureVal(val[0]):
 			return val
 
-	def saltGenerator(size=5):
+	def saltGenerator(self, size=5):
 		'''
 			used to generate a series of random characters to be used in a salt.
 			Parameters:
@@ -48,7 +41,7 @@ class Hasher():
 		'''
 		return ''.join(random.choice(string.letters) for x in xrange(size) )
 
-	def makePwHash(name, pw, salt= None):
+	def makePwHash(self, name, pw, salt= None):
 		'''
 			returns a hashed password and salt of the format->
 				HASH(name + pw + salt),salt using sha256
@@ -58,14 +51,18 @@ class Hasher():
 			returns
 				a string of the format (hash, salt)
 		'''
+		logging.info("hashing this::::::: why is name an object?")
+		logging.info(name)
+		logging.info(pw)
+
 		if not salt:
-			salt = saltGenerator()	
+			salt = self.saltGenerator()	
 		
 		hashed = hashlib.sha256(name + pw + salt).hexdigest()
 
-		return "%s,%s" % (h, salt)
+		return "%s,%s" % (hashed, salt)
 
-	def validatePassword(name, pw, h):
+	def validatePassword(self, name, pw, h):
 		'''
 			used to validate a user's password, by comparing the hash of the name+pw+salt with the hash passed in(which has the salt
 			added to the end of it).
@@ -78,4 +75,4 @@ class Hasher():
 		'''
 
 		salt = h.split(',')[1]
-		return h == makePwHash(name, pw, salt)
+		return h == self.makePwHash(name, pw, salt)

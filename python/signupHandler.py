@@ -17,7 +17,8 @@
 import webapp2
 from python.handler import *
 import re
-from python.hashing import Hasher
+import hashing
+import logging
 
 # Validation functions
 USER_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
@@ -69,18 +70,18 @@ class SignupHandler(Handler):
 
 	def post(self):
 		# form validation section
+		uname = str(self.request.get('username'))
+		pword = str(self.request.get('password'))
 		have_error, params = self.validateInput(self.request)
-		username = self.request.get('username')
-		password = self.request.get('password')
 
 		if have_error:
 			# do this if there is an error
 			self.render('signupForm.html', **params)
 		else:
 			# if there isn't an error, hash the password, make the cookie and redirect to the right page
-			h = Hasher()
 			# make cookie heeere!!!
-			newCookieVal = h.makeSecureVal(username, password)
+			h = hashing.Hasher()
+			newCookieVal = h.makePwHash(uname, pword)
 			# set the set-cookie header to set the cookie
 			self.response.headers.add_header("Set-Cookie", "user_id=%s" % newCookieVal)
 			self.render('welcome.html', **params)
