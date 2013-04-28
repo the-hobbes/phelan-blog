@@ -28,5 +28,8 @@ body{
 table{
 	margin-left: 10%;
 }
+#login table{
+	margin-left:30%;
+}
 .label {text-align: right}
 .error {color: #E32551}
