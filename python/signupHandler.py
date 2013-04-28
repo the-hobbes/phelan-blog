@@ -19,8 +19,6 @@ from python.handler import *
 import hashing
 import logging
 
-
-
 # handle requests for the resource
 class SignupHandler(Handler):
 	def get(self):

@@ -15,13 +15,13 @@ class Hasher():
 			returns the hex digest of a hashed value s
 		'''
 		# using HMAC
-		return hmac.new(SECRET, s).hexdigest()
+		return hmac.new(self.SECRET, s).hexdigest()
 
 	def makeSecureVal(self, s):
 		'''
 			returns the pair value,hash where value is s, and hash is the hash of s
 		'''
-		return "%s|%s" % (s, hashStr(s))
+		return "%s|%s" % (s, self.hashStr(s))
 
 	def checkSecureVal(self, h):
 		'''
