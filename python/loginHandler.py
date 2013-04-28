@@ -14,21 +14,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-import webapp2
+
 from python.handler import *
-from python.signupHandler import *
-from python.welcomeHandler import *
-from python.loginHandler import *
+import datastore
 
-class MainHandler(Handler):
-    def get(self):
-        self.renderLanding()
+class LoginHandler(Handler):
+	def get(self):
+		self.render("login.html")
 
-    def renderLanding(self):
-    	self.render("index.html")
+	def post(self):
+		username = self.request.get('username')
+		password = self.request.get('password')
 
-app = webapp2.WSGIApplication([ ('/', MainHandler),
-								('/signup',SignupHandler),
-								('/welcome', WelcomeHandler),
-								('/login', LoginHandler)
-								 ], debug=True)
+		# interact with datastore
+		u = User.login(username, password)
+
+		if u:
+			# set secure cookie and redirect to blog
+			self.login(u)
+			self.redirect('/')
+		else:
+			msg = "invalid login"
+			self.render("login.html", error = msg)

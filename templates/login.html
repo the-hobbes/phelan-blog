@@ -7,9 +7,9 @@
     <link href='http://fonts.googleapis.com/css?family=Days+One' rel='stylesheet' type='text/css'>
   </head>
 
-  <body>
+  <body id="login">
     <div id="signupPage">
-      <h2>Signup</h2>
+      <h2>Log In</h2>
       <hr>
       <form method="post">
         <table>
@@ -37,34 +37,12 @@
             </td>
           </tr>
 
-          <tr>
-            <td class="label">
-              Verify Password
-            </td>
-            <td>
-              <input type="password" name="verify" value="">
-            </td>
-            <td class="error">
-              {{error_verify}}
-            </td>
-          </tr>
-
-          <tr>
-            <td class="label">
-              Email (optional)
-            </td>
-            <td>
-              <input type="text" name="email" value="{{email}}">
-            </td>
-            <td class="error">
-              {{error_email}}
-            </td>
-          </tr>
         </table>
         <hr>
         <input type="submit">
       </form>
     </div><!--  endsignupPage -->
+
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

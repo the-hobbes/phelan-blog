@@ -10,7 +10,7 @@ class User(db.Model):
     '''
         user entity.
         @classmethod are decorators. This particular one means that you can call these methods on the class itself, not 
-        instances (objects) of this class. User.by_id, for example. 
+        instances (objects) of this class. User.by_id, for example. So, 'cls' is kind of like 'self'.
 
         These are procedural lookups, not GQL ones
     '''
@@ -50,6 +50,9 @@ class User(db.Model):
 
     @classmethod
     def login(cls, name, pw):
+        h = hashing.Hasher()
+        # do an actual login. first, lookup the user in the datastore
         u = cls.by_name(name)
-        if u and valid_pw(name, pw, u.pw_hash):
+        if u and h.validatePassword(name, pw, u.pw_hash):
+            # if the user exists in the datastore and the password hashes to the right value, return the user object
             return u

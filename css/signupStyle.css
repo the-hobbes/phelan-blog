@@ -1,4 +1,4 @@
-/*signup page styling*/
+/*signup and login page styling*/
 body{
 	margin:0px auto;
 	width: 960px;
@@ -27,6 +27,9 @@ body{
 }
 table{
 	margin-left: 10%;
+}
+#login table{
+	margin-left:30%;
 }
 .label {text-align: right}
 .error {color: #E32551}
