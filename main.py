@@ -20,13 +20,16 @@ from python.signupHandler import *
 from python.welcomeHandler import *
 from python.loginHandler import *
 from python.logoutHandler import *
+from python.newpostHandler import *
+from python.permalinkHandler import *
+import re
 
 class MainHandler(Handler):
 	def get(self):
 		cookieStr = self.request.cookies.get('user_id')
 
 		if cookieStr:
-			self.render("index.html", logout="logout")
+			self.render("index.html", logout="logout", newpost = "New Post")
 		else:
 			self.render("index.html")	
 
@@ -34,5 +37,7 @@ app = webapp2.WSGIApplication([ ('/', MainHandler),
 								('/signup',SignupHandler),
 								('/welcome', WelcomeHandler),
 								('/login', LoginHandler),
-								('/logout', LogoutHandler)
+								('/logout', LogoutHandler),
+								('/newpost', NewpostHandler),
+								(r'/permalink/(\d+)', PermalinkHandler) #(\d+)indicates a parameter is passed to the get method. The "\d+" will accept all the links that have 1 or more digit after "/blog/post/" path.
 								 ], debug=True)

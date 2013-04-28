@@ -56,3 +56,12 @@ class User(db.Model):
         if u and h.validatePassword(name, pw, u.pw_hash):
             # if the user exists in the datastore and the password hashes to the right value, return the user object
             return u
+
+class Posts(db.Model):
+    '''
+        Class Posts inherits from db.Model, used to create instances of a "table" Posts in the datastore.
+    '''
+    subject = db.StringProperty(required = True)
+    content = db.TextProperty(required = True)
+    timestamp = db.DateTimeProperty(auto_now_add = True)
+    username = db.StringProperty(required = True)
