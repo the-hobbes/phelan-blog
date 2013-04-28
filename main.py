@@ -22,16 +22,23 @@ from python.loginHandler import *
 from python.logoutHandler import *
 from python.newpostHandler import *
 from python.permalinkHandler import *
+import datastore
 import re
 
 class MainHandler(Handler):
 	def get(self):
-		cookieStr = self.request.cookies.get('user_id')
 
+		# display options based on if a user is logged in
+		cookieStr = self.request.cookies.get('user_id')
+		# get all the posts in the datastore by timestamp
+		p = Posts.by_date()
+		
 		if cookieStr:
 			self.render("index.html", logout="logout", newpost = "New Post")
 		else:
 			self.render("index.html")	
+
+
 
 app = webapp2.WSGIApplication([ ('/', MainHandler),
 								('/signup',SignupHandler),

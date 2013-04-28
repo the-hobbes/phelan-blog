@@ -38,7 +38,7 @@ class User(db.Model):
     @classmethod
     def register(cls, name, pw, email = None):
         # this one actually creates a new user object, based on the inputs
-        # doesn't actually store it
+        # However, doesn't actually store it
         h = hashing.Hasher()
         uKey = db.Key.from_path('users', 'default')
         
@@ -65,3 +65,9 @@ class Posts(db.Model):
     content = db.TextProperty(required = True)
     timestamp = db.DateTimeProperty(auto_now_add = True)
     username = db.StringProperty(required = True)
+
+    @classmethod
+    def by_date(cls):
+        # looks up posts by timestamp, in descending order.
+        p = Posts.all().filter('name =', name).get()
+        return u
