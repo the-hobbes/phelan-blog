@@ -14,23 +14,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-import webapp2
+
 from python.handler import *
-from python.signupHandler import *
-from python.welcomeHandler import *
-from python.loginHandler import *
-from python.logoutHandler import *
 
-class MainHandler(Handler):
-    def get(self):
-        self.renderLanding()
+class LogoutHandler(Handler):
+	def get(self):
+		# get the login cookie user_id and set it to nothing, then redirect to the signup page
+		if self.request.cookies.get('user_id'):
+			newCookieVal = ""
+			self.response.headers.add_header("Set-Cookie", "user_id=%s; Path=/" % newCookieVal)
 
-    def renderLanding(self):
-    	self.render("index.html")
-
-app = webapp2.WSGIApplication([ ('/', MainHandler),
-								('/signup',SignupHandler),
-								('/welcome', WelcomeHandler),
-								('/login', LoginHandler),
-								('/logout', LogoutHandler)
-								 ], debug=True)
+		self.redirect("/signup")
