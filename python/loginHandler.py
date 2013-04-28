@@ -32,7 +32,7 @@ class LoginHandler(Handler):
 		if u:
 			# set secure cookie and redirect to blog
 			self.login(u)
-			self.redirect('/')
+			self.redirect('/welcome')
 		else:
 			msg = "Invalid Login"
 			self.render("login.html", error = msg)
