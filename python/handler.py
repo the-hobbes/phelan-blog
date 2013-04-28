@@ -110,6 +110,7 @@ class Handler(webapp2.RequestHandler):
 		self.set_secure_cookie('user_id', str(user.key().id()))
 
 	def logout(self):
+		# keeping the same path lets us destroy the right cookie
 		self.response.headers.add_header('Set-Cookie', 'user_id=; Path=/')
 
 	def initialize(self, *a, **kw):
