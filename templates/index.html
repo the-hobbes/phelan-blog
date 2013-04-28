@@ -17,6 +17,7 @@
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
+		<div id="logout" style="margin-left:30px; margin-top:10px; position:absolute;"><a href="/logout">{{logout}}</a></div>
 		<div id="container">
 	    
 		   <!--  <header class="header">
@@ -215,16 +216,15 @@
     </script>
 <!-- end javascript -->
 	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		// analytics code
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-	  ga('create', 'UA-11781420-6', 'phelan-blog.appspot.com');
-	  ga('send', 'pageview');
-
+		ga('create', 'UA-11781420-6', 'phelan-blog.appspot.com');
+		ga('send', 'pageview');
 	</script>
-
 		</div><!-- end content wrapper -->
 	</body>
 </html>

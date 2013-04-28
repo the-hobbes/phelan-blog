@@ -34,5 +34,5 @@ class LoginHandler(Handler):
 			self.login(u)
 			self.redirect('/')
 		else:
-			msg = "invalid login"
+			msg = "Invalid Login"
 			self.render("login.html", error = msg)
