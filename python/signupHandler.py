@@ -83,5 +83,5 @@ class SignupHandler(Handler):
 			h = hashing.Hasher()
 			newCookieVal = h.makePwHash(uname, pword)
 			# set the set-cookie header to set the cookie
-			self.response.headers.add_header("Set-Cookie", "user_id=%s" % newCookieVal)
+			self.response.headers.add_header("Set-Cookie", "user_id=%s; Path=/" % newCookieVal)
 			self.render('welcome.html', **params)

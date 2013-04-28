@@ -51,10 +51,6 @@ class Hasher():
 			returns
 				a string of the format (hash, salt)
 		'''
-		logging.info("hashing this::::::: why is name an object?")
-		logging.info(name)
-		logging.info(pw)
-
 		if not salt:
 			salt = self.saltGenerator()	
 		
