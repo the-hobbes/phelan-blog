@@ -22,11 +22,13 @@ from python.loginHandler import *
 from python.logoutHandler import *
 
 class MainHandler(Handler):
-    def get(self):
-        self.renderLanding()
+	def get(self):
+		cookieStr = self.request.cookies.get('user_id')
 
-    def renderLanding(self):
-    	self.render("index.html")
+		if cookieStr:
+			self.render("index.html", logout="logout")
+		else:
+			self.render("index.html")	
 
 app = webapp2.WSGIApplication([ ('/', MainHandler),
 								('/signup',SignupHandler),
