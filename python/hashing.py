@@ -8,6 +8,7 @@ import string
 import logging
 
 class Hasher():
+	SECRET = 'lkhfdsfs8d9fhsidfhs87dfaskbdfkjbiub2fb2kb.23r'
 	# functions related to hashing cookies and checking their veracity
 	def hashStr(self, s):
 		'''

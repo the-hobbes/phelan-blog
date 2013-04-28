@@ -16,22 +16,10 @@
 #
 import webapp2
 from python.handler import *
-import re
 import hashing
 import logging
 
-# Validation functions
-USER_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
-def valid_username(username):
-	return username and USER_RE.match(username)
 
-PASS_RE = re.compile(r"^.{3,20}$")
-def valid_password(password):
-	return password and PASS_RE.match(password)
-
-EMAIL_RE  = re.compile(r'^[\S]+@[\S]+\.[\S]+$')
-def valid_email(email):
-	return not email or EMAIL_RE.match(email)
 
 # handle requests for the resource
 class SignupHandler(Handler):
@@ -40,33 +28,6 @@ class SignupHandler(Handler):
 
 	def renderLanding(self):
 		self.render("signupForm.html")
-
-	def validateInput(self, request):
-		# validate the form input
-		username = request.get('username')
-		password = request.get('password')
-		verify = request.get('verify')
-		email = request.get('email')
-
-		params = dict(username = username, email = email)
-
-		if not valid_username(username):
-			params['error_username'] = "That's not a valid username."
-			return True, params
-
-		if not valid_password(password):
-			params['error_password'] = "That wasn't a valid password."
-			return True, params
-		elif password != verify:
-			params['error_verify'] = "Your passwords didn't match."
-			return True, params
-
-		if not valid_email(email):
-			params['error_email'] = "That's not a valid email."
-			return True, params
-
-		return False, params
-
 
 	def post(self):
 		# form validation section
@@ -84,4 +45,4 @@ class SignupHandler(Handler):
 			newCookieVal = h.makePwHash(uname, pword)
 			# set the set-cookie header to set the cookie
 			self.response.headers.add_header("Set-Cookie", "user_id=%s; Path=/" % newCookieVal)
-			self.render('welcome.html', **params)
+			self.redirect('/welcome', uname)

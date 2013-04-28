@@ -14,19 +14,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-import webapp2
+
 from python.handler import *
-from python.signupHandler import *
-from python.welcomeHandler import *
 
-class MainHandler(Handler):
-    def get(self):
-        self.renderLanding()
+class WelcomeHandler(Handler):
+	def get(self):
+		self.renderLanding()
 
-    def renderLanding(self):
-    	self.render("index.html")
-
-app = webapp2.WSGIApplication([ ('/', MainHandler),
-								('/signup',SignupHandler),
-								('/welcome', WelcomeHandler)
-								 ], debug=True)
+	def renderLanding(self):
+		self.render("welcome.html")
