@@ -15,9 +15,10 @@
 # limitations under the License.
 #
 import webapp2
-from python.handler import *
+from handler import *
 import hashing
 import logging
+import datastore
 
 # handle requests for the resource
 class SignupHandler(Handler):
@@ -31,6 +32,8 @@ class SignupHandler(Handler):
 		# form validation section
 		uname = str(self.request.get('username'))
 		pword = str(self.request.get('password'))
+		email = str(self.request.get('email'))
+
 		have_error, params = self.validateInput(self.request)
 
 		if have_error:
@@ -39,8 +42,20 @@ class SignupHandler(Handler):
 		else:
 			# if there isn't an error, hash the password, make the cookie and redirect to the right page
 			# make cookie heeere!!!
-			h = hashing.Hasher()
-			newCookieVal = h.makePwHash(uname, pword)
+			# h = hashing.Hasher()
+			# newCookieVal = h.makePwHash(uname, pword)
 			# set the set-cookie header to set the cookie
-			self.response.headers.add_header("Set-Cookie", "user_id=%s; Path=/" % newCookieVal)
-			self.redirect('/welcome', uname)
+			# self.response.headers.add_header("Set-Cookie", "user_id=%s; Path=/" % newCookieVal)
+			# self.redirect('/welcome', uname)
+
+			# make sure the user doesn't already exist
+			u = datastore.User.by_name(uname)
+			if u:
+				msg = "User already exists"
+				self.render('signupForm.html', error_username = msg)
+			else:
+				u = u = User.register(uname, pword, email)
+				u.put()
+
+				self.login(u)
+				self.redirect("/welcome")

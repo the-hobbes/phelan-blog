@@ -19,7 +19,8 @@ from python.handler import *
 
 class WelcomeHandler(Handler):
 	def get(self):
-		self.renderLanding()
-
-	def renderLanding(self):
-		self.render("welcome.html")
+		# self.user is specified in the Handler class in the initialize method
+		if self.user:
+			self.render("welcome.html", username = self.user.name)
+		else:
+			self.redirect("/signup")

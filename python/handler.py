@@ -120,11 +120,5 @@ class Handler(webapp2.RequestHandler):
 		'''
 		webapp2.RequestHandler.initialize(self, *a, **kw)
 		uid = self.read_secure_cookie('user_id')
-		# if the cookie exists, store in self.user, which is part of the datastore
-		self.user = uid and User.by_id(int(uid))
-
-	# datastore interactions related to users
-	def users_key(group = 'default'):
-		# this creates the ancestor element in the database to store all the users
-		return db.Key.from_path('users', group)
-
+		# if the cookie exists, store the user object in the self.user variable, whose value is read from the datastore by the id
+		self.user = uid and User.by_id(int(uid[0]))
