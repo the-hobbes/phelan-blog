@@ -16,7 +16,23 @@
 #
 
 from python.handler import *
+import datastore
 
 class LoginHandler(Handler):
 	def get(self):
 		self.render("login.html")
+
+	def post(self):
+		username = self.request.get('username')
+		password = self.request.get('password')
+
+		# interact with datastore
+		u = User.login(username, password)
+
+		if u:
+			# set secure cookie and redirect to blog
+			self.login(u)
+			self.redirect('/')
+		else:
+			msg = "invalid login"
+			self.render("login.html", error = msg)
