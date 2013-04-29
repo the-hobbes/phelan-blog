@@ -74,8 +74,8 @@ body {
 
 /*log out thing*/
 .logout {
-	position: absolute;
-	margin-left: 30px !important;
+	/*position: absolute;*/
+	/*margin-left: 30px !important;*/
 }
 
 /*permalink styling*/

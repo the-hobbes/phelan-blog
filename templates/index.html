@@ -20,9 +20,12 @@
 	    <link rel="stylesheet" href="../css/print.css" type="text/css" media="print">
 	</head>
 	<body id="multiPost">
-		<a href="/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="../img/home.png" alt="go home"></a>
-
-		<div id="logout" style="margin-left:30px; margin-top:10px; position:absolute;"><a href="/logout">{{logout}}</a></div>
+		<!-- logout section -->
+		<a href="/logout">
+			<img id="logout"style="position: absolute; top: 0; right: 0; border: 0;" src="../img/home.png" alt="log out">
+		</a>
+		<div id="isLogout" style="display: none !important;">{{logout}}</div>
+		<!-- end logout section -->
 		<div id="container">
 
 		    <div id="imageBox">
@@ -133,6 +136,15 @@
 
 				var particle = new Particles(x, y);
 			}, 2500);
+
+			//function to show or hide logout banner, based on a string pushed into the isLogout div by the server
+			if ( $('#isLogout').text() == 'logout'){
+				// console.log("logout here!");
+				$('#logout').show();
+			}
+			else{
+				$('#logout').hide();
+			}
 		});
 	    	// end particles, and start menus
 
@@ -210,6 +222,9 @@
 
 		ga('create', 'UA-11781420-6', 'phelan-blog.appspot.com');
 		ga('send', 'pageview');
+	</script>
+	<script>
+		
 	</script>
 		</div><!-- end content wrapper -->
 	</body>
