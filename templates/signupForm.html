@@ -13,59 +13,61 @@
     <div id="signupPage">
       <h2>Signup</h2>
       <hr>
-      <form method="post">
-        <table>
-          <tr>
-            <td class="label">
-              Username
-            </td>
-            <td>
-              <input type="text" name="username" value="{{username}}">
-            </td>
-            <td class="error">
-              {{error_username}}
-            </td>
-          </tr>
+      <div id="colorContainer">
+        <form method="post">
+          <table>
+            <tr>
+              <td class="label">
+                Username
+              </td>
+              <td>
+                <input type="text" name="username" value="{{username}}">
+              </td>
+              <td class="error">
+                {{error_username}}
+              </td>
+            </tr>
 
-          <tr>
-            <td class="label">
-              Password
-            </td>
-            <td>
-              <input type="password" name="password" value="">
-            </td>
-            <td class="error">
-              {{error_password}}
-            </td>
-          </tr>
+            <tr>
+              <td class="label">
+                Password
+              </td>
+              <td>
+                <input type="password" name="password" value="">
+              </td>
+              <td class="error">
+                {{error_password}}
+              </td>
+            </tr>
 
-          <tr>
-            <td class="label">
-              Verify Password
-            </td>
-            <td>
-              <input type="password" name="verify" value="">
-            </td>
-            <td class="error">
-              {{error_verify}}
-            </td>
-          </tr>
+            <tr>
+              <td class="label">
+                Verify Password
+              </td>
+              <td>
+                <input type="password" name="verify" value="">
+              </td>
+              <td class="error">
+                {{error_verify}}
+              </td>
+            </tr>
 
-          <tr>
-            <td class="label">
-              Email (optional)
-            </td>
-            <td>
-              <input type="text" name="email" value="{{email}}">
-            </td>
-            <td class="error">
-              {{error_email}}
-            </td>
-          </tr>
+            <tr>
+              <td class="label">
+                Email (optional)
+              </td>
+              <td>
+                <input type="text" name="email" value="{{email}}">
+              </td>
+              <td class="error">
+                {{error_email}}
+              </td>
+            </tr>
         </table>
+        </div> <!-- end color container -->
         <hr>
-        <input type="submit">
-        <input type="button" value="Cancel" onclick="window.location.href='/';" />
+        <input class="butt" type="submit">
+        <input class="butt" type="button" value="Cancel" onclick="window.location.href='/';" />
       </form>
     </div><!--  endsignupPage -->
   <script>

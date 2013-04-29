@@ -12,21 +12,23 @@
 	    <div id="newpost">
 		<h1>Add a new post</h1>
 		<hr>
-		<form method="post">
-			<label>
-				<div>Title</div>
-				<input type="text" name="subject" value="{{subject}}">
-			</label>
+		<div id="colorContainer">
+			<form method="post">
+				<label>
+					<div>Title</div>
+					<input type="text" name="subject" value="{{subject}}">
+				</label>
 
-			<label>
-				<div>Post</div>
-				<textarea name="content" >{{content}}</textarea>
-			</label>
+				<label>
+					<div>Post</div>
+					<textarea name="content" >{{content}}</textarea>
+				</label>
 
-			<div class="error">{{error}}</div><!-- render this page with error courtesy of jinja-->
-
-			<input type="submit">
-	        <input type="button" value="Cancel" onclick="window.location.href='/';" />
+				<div class="error">{{error}}</div><!-- render this page with error courtesy of jinja-->
+		</div> <!-- end color container -->
+		<hr>
+			<input class="butt" type="submit">
+	        <input class="butt" type="button" value="Cancel" onclick="window.location.href='/';" />
 		</form>
 	</div> <!-- end signup page wrapper div -->
   <script>

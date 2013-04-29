@@ -40,7 +40,7 @@ table{
 	width: 500px;
 	border:1px solid black;
 	padding:10px;
-	background-color: white;
+	background-color: #E32551;
 	box-shadow: 5px 5px 5px #888888;
 }
 
@@ -51,9 +51,43 @@ table{
 	font-family: monospace;
 }
 
-#login #signupPage {
+#signupPage {
 	background-color: #E32551;
 }
 #signupPage #colorContainer {
 	background-color: #61c19e;
 }
+
+#newpost #colorContainer {
+	background-color: #61c19e;
+	padding-left:10px;
+}
+
+.butt {
+   border-top: 1px solid #ffbb00;
+   background: #d49d04;
+   background: -webkit-gradient(linear, left top, left bottom, from(#a87d07), to(#d49d04));
+   background: -webkit-linear-gradient(top, #a87d07, #d49d04);
+   background: -moz-linear-gradient(top, #a87d07, #d49d04);
+   background: -ms-linear-gradient(top, #a87d07, #d49d04);
+   background: -o-linear-gradient(top, #a87d07, #d49d04);
+   padding: 4.5px 9px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 11px;
+   font-family: Georgia, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.butt:hover {
+   border-top-color: #7d6729;
+   background: #7d6729;
+   color: #ccc;
+   }
+.butt:active {
+   border-top-color: #66531e;
+   background: #66531e;
+   }
