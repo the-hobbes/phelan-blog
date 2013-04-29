@@ -50,4 +50,10 @@ table{
 	font-size: 17px;
 	font-family: monospace;
 }
+
+#login #signupPage {
+	background-color: #E32551;
+}
+#signupPage #colorContainer {
+	background-color: #61c19e;
 }
