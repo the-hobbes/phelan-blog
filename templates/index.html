@@ -38,10 +38,13 @@
 
 					 <div class='sideBar'>
 				        <h2>About</h2>
-						<img src="../img/faceShot.jpg" alt="">
+						<a href="https://twitter.com/PhelanVendevill" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow</a>
+						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+						</script>
+						<img src="../img/faceShot.jpg" style="height:120px;"alt="">
 				        <p>I'm Phelan, and this is my experiment blog.</p>
 				        <p><a href="/signup">Contributor Signup</a></p>
-				        <p><a href="/login">Login</a></p>
+				        <p><a href="/login">{{loggedin}}</a></p>
 				        <p><a href="/newpost">{{newpost}}</a></p>
 				      </div><!-- end sidebar -->
 

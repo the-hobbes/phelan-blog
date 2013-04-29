@@ -40,7 +40,7 @@ class MainHandler(Handler):
 		if cookieStr:
 			self.render("index.html", logout="logout", newpost="New Post", posts=p)
 		else:
-			self.render("index.html", posts=p)
+			self.render("index.html", posts=p, loggedin="Login")
 
 
 app = webapp2.WSGIApplication([ ('/', MainHandler),

@@ -31,8 +31,8 @@ table{
 #login table{
 	margin-left:30%;
 }
-.label {text-align: right}
-.error {color: #E32551}
+.label {text-align: right;}
+.error {color: #E32551;}
 
 #newpost{
 	text-align: left;
@@ -50,4 +50,36 @@ table{
 	font-size: 17px;
 	font-family: monospace;
 }
+
+/*#signupPage {
+	background-color: #E32551;
 }
+#signupPage #colorContainer {
+	background-color: #61c19e;
+}
+
+#newpost #colorContainer {
+	background-color: #61c19e;
+	padding-left:10px;
+}
+
+.butt {
+   border-top: 1px solid #ffbb00;
+   background: #d49d04;
+   padding: 4.5px 9px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: black;
+   vertical-align: middle;
+   }
+.butt:hover {
+   border-top-color: #7d6729;
+   background: #7d6729;
+   color: #ccc;
+   }
+.butt:active {
+   border-top-color: #66531e;
+   background: #66531e;
+   }*/

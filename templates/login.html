@@ -13,34 +13,35 @@
     <div id="signupPage">
       <h2>Log In</h2>
       <hr>
-      <form method="post">
-        <table>
-          <tr>
-            <td class="label">
-              Username
-            </td>
-            <td>
-              <input type="text" name="username" value="{{username}}">
-            </td>
-            <td class="error">
-            </td>
-          </tr>
+      <div id="colorContainer">
+        <form method="post">
+          <table>
+            <tr>
+              <td class="label">
+                Username
+              </td>
+              <td>
+                <input type="text" name="username" value="{{username}}">
+              </td>
+              <td class="error">
+              </td>
+            </tr>
 
-          <tr>
-            <td class="label">
-              Password
-            </td>
-            <td>
-              <input type="password" name="password" value="">
-            </td>
-          </tr>
-
-        </table>
+            <tr>
+              <td class="label">
+                Password
+              </td>
+              <td>
+                <input type="password" name="password" value="">
+              </td>
+            </tr>
+          </table>
+      </div> <!-- end color container -->
         <div class="error">{{error}}</div>
         <hr>
-        <input type="submit">
-        <input type="button" value="Cancel" onclick="window.location.href='/';" />
-      </form>
+        <input class="butt" type="submit">
+        <input type="button" class="butt" value="Cancel" onclick="window.location.href='/';" />
+      </form> <!-- end form -->
     </div><!--  endsignupPage -->
 
   <script>
