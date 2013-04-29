@@ -1,0 +1,14 @@
+/*print style sheet*/
+
+#imageBox, .navigation, #logout{
+	display: none !important;
+}
+
+body{
+	position: absolute;
+	margin-top: -10px !important;
+}
+
+a {
+	display: none !important;
+}
