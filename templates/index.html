@@ -44,7 +44,8 @@
 						<div class='post'>
 							<h2>{{post.subject}}</h2>
 							<h3>By {{post.username}} on {{post.timestamp}}</h3>
-							<p>{{post.content}}</p>
+							<p>{{post.content[0:500]}} <a href="/permalink/{{post.key().id()}}">...more</a></p>
+							<!-- <p>ID: {{post.key().id()}}</p> -->
 							<hr>
 						</div> <!-- end of a post -->
 					{% endfor %}

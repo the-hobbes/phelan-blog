@@ -31,23 +31,12 @@ class MainHandler(Handler):
 		# display options based on if a user is logged in
 		cookieStr = self.request.cookies.get('user_id')
 		# get all the posts in the datastore by timestamp
-		p = db.GqlQuery("SELECT * from Posts ORDER BY timestamp DESC")
-
-		# self.prepareData(p)
+		p = db.GqlQuery("SELECT * from Posts ORDER BY time DESC")
 
 		if cookieStr:
 			self.render("index.html", logout="logout", newpost="New Post", posts=p)
 		else:
-			self.render("index.html", posts=p)	
-
-	def prepareData(self, p):
-		# used to prepare the post data for display on the webpage
-		for post in p:
-			logging.info(post['ID'])
-			logging.info(post.username)
-			logging.info(post.timestamp)
-			logging.info(post.subject)
-			logging.info(post.content)
+			self.render("index.html", posts=p)
 
 
 app = webapp2.WSGIApplication([ ('/', MainHandler),
