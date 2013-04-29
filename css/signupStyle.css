@@ -66,20 +66,12 @@ table{
 .butt {
    border-top: 1px solid #ffbb00;
    background: #d49d04;
-   background: -webkit-gradient(linear, left top, left bottom, from(#a87d07), to(#d49d04));
-   background: -webkit-linear-gradient(top, #a87d07, #d49d04);
-   background: -moz-linear-gradient(top, #a87d07, #d49d04);
-   background: -ms-linear-gradient(top, #a87d07, #d49d04);
-   background: -o-linear-gradient(top, #a87d07, #d49d04);
    padding: 4.5px 9px;
    -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
    -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
    box-shadow: rgba(0,0,0,1) 0 1px 0;
    text-shadow: rgba(0,0,0,.4) 0 1px 0;
-   color: white;
-   font-size: 11px;
-   font-family: Georgia, serif;
-   text-decoration: none;
+   color: black;
    vertical-align: middle;
    }
 .butt:hover {
