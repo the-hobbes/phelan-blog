@@ -32,7 +32,7 @@ table{
 	margin-left:30%;
 }
 .label {text-align: right;}
-.error {color: white;}
+.error {color: #E32551;}
 
 #newpost{
 	text-align: left;
@@ -51,7 +51,7 @@ table{
 	font-family: monospace;
 }
 
-#signupPage {
+/*#signupPage {
 	background-color: #E32551;
 }
 #signupPage #colorContainer {
@@ -82,4 +82,4 @@ table{
 .butt:active {
    border-top-color: #66531e;
    background: #66531e;
-   }
+   }*/
