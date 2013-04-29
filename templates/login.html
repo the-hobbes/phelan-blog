@@ -23,7 +23,6 @@
               <input type="text" name="username" value="{{username}}">
             </td>
             <td class="error">
-              {{error_username}}
             </td>
           </tr>
 
@@ -34,14 +33,13 @@
             <td>
               <input type="password" name="password" value="">
             </td>
-            <td class="error">
-              {{error_password}}
-            </td>
           </tr>
 
         </table>
+        <div class="error">{{error}}</div>
         <hr>
         <input type="submit">
+        <input type="button" value="Cancel" onclick="window.location.href='/';" />
       </form>
     </div><!--  endsignupPage -->
 
