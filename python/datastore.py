@@ -69,5 +69,5 @@ class Posts(db.Model):
     @classmethod
     def by_date(cls):
         # looks up posts by timestamp, in descending order.
-        p = Posts.all().filter('name =', name).get()
-        return u
+        p = Posts.all().order('-timestamp').get()
+        return p

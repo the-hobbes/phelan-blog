@@ -22,7 +22,7 @@ body {
 	background-color: white;
 	box-shadow: 5px 5px 5px #888888;
 	padding-bottom: 30px;
-	min-height: 300px;
+	min-height: 350px;
 }
 
 .post {
@@ -90,7 +90,10 @@ body {
 	height:100%;
 	top:0;
 	left: 0;
-
-	/* edit: added z-index */
 	z-index: 100;
+}
+
+#multiPost h3{
+	font-size: smaller;
+	margin-top: -15px;
 }

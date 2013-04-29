@@ -22,22 +22,32 @@ from python.loginHandler import *
 from python.logoutHandler import *
 from python.newpostHandler import *
 from python.permalinkHandler import *
-import datastore
+from python.datastore import *
 import re
+import logging
 
 class MainHandler(Handler):
 	def get(self):
-
 		# display options based on if a user is logged in
 		cookieStr = self.request.cookies.get('user_id')
 		# get all the posts in the datastore by timestamp
-		p = Posts.by_date()
-		
-		if cookieStr:
-			self.render("index.html", logout="logout", newpost = "New Post")
-		else:
-			self.render("index.html")	
+		p = db.GqlQuery("SELECT * from Posts ORDER BY timestamp DESC")
 
+		# self.prepareData(p)
+
+		if cookieStr:
+			self.render("index.html", logout="logout", newpost="New Post", posts=p)
+		else:
+			self.render("index.html", posts=p)	
+
+	def prepareData(self, p):
+		# used to prepare the post data for display on the webpage
+		for post in p:
+			logging.info(post['ID'])
+			logging.info(post.username)
+			logging.info(post.timestamp)
+			logging.info(post.subject)
+			logging.info(post.content)
 
 
 app = webapp2.WSGIApplication([ ('/', MainHandler),
