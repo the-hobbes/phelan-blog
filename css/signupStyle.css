@@ -31,8 +31,8 @@ table{
 #login table{
 	margin-left:30%;
 }
-.label {text-align: right}
-.error {color: #E32551}
+.label {text-align: right;}
+.error {color: white;}
 
 #newpost{
 	text-align: left;
