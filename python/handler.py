@@ -118,6 +118,14 @@ class Handler(webapp2.RequestHandler):
 			this gets called before every request, and it checks for the user cookie (user_id).
 			basically checks to see if the user is logged in or not
 			called by the appengine framework
+
+			NOTE ON THIS:
+			Steve's wanted to check for a user cookie each time the webserver receives a request from a client (browser), but 
+			instead of overriding the webapp2.RequestHandler.__init__ method as described in the docs, he overrides the initalize 
+			method which he knows is called by __init__, and then makes sure to call the superclass' (webapp2.RequestHandler) 
+			initialize. (In Python, a class's __init__ method is automatically called when a class instance is created.) The rest of
+			the handler code can then just check self.user to see if a user is logged in, which should be more efficient and cleaner 
+			retrieving the cookie, repeating the hash validity check, etc. each time.
 		'''
 		webapp2.RequestHandler.initialize(self, *a, **kw)
 		uid = self.read_secure_cookie('user_id')

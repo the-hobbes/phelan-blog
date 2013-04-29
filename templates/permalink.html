@@ -9,46 +9,38 @@
 		-->
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>Phelan's Blog</title>
+		<title>Here's a Post</title>
 		<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 	    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 		<meta name="description" content="">
-		<link rel="stylesheet" href="css/makisuStyle.css">
+		<link rel="stylesheet" href="../css/makisuStyle.css">
 	    <link href='http://fonts.googleapis.com/css?family=Days+One' rel='stylesheet' type='text/css'>
 	    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="../css/style.css">
 	</head>
-	<body id="multiPost">
-		<div id="logout" style="margin-left:30px; margin-top:10px; position:absolute;"><a href="/logout">{{logout}}</a></div>
+	<body id="permalink">
 		<div id="container">
 
-		    <div id="imageBox">
+			<div id="imageBox">
 				<a id="linkspan" href="/"></a>
-		    	<!-- <div id="triangle-bottomleft"></div> -->
+		    	<div id="triangle-bottomleft">
+		    	</div>
 		    </div> <!-- end image box -->
 
 			    <div id="postContent">
-
 			    	<div id='content' class='row-fluid'>
-
-					 <div class='sideBar'>
+				      <div class='post'>
+				      	<h2>{{blog_entry.subject}}</h2>
+				      	<h3>By {{blog_entry.username}} on {{blog_entry.timestamp}}</h3>
+				      	<p>{{blog_entry.content}}
+				      	</p>
+				      </div> <!-- end of a post -->
+  				      <div class='sideBar'>
 				        <h2>About</h2>
 						<img src="../img/faceShot.jpg" alt="">
 				        <p>I'm Phelan, and this is my experiment blog.</p>
-				        <p><a href="/signup">Signup</a></p>
-				        <p><a href="/login">Login</a></p>
-				        <p><a href="/newpost">{{newpost}}</a></p>
+				        <p><a href="/">Home</a></p>
 				      </div><!-- end sidebar -->
-
-					{% for post in posts %}
-						<div class='post'>
-							<h2>{{post.subject}}</h2>
-							<h3>By {{post.username}} on {{post.timestamp}}</h3>
-							<p>{{post.content[0:500]}} <a href="/permalink/{{post.key().id()}}">...more</a></p>
-							<!-- <p>ID: {{post.key().id()}}</p> -->
-							<hr>
-						</div> <!-- end of a post -->
-					{% endfor %}
 
 					</div><!-- end content -->
 

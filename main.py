@@ -20,19 +20,30 @@ from python.signupHandler import *
 from python.welcomeHandler import *
 from python.loginHandler import *
 from python.logoutHandler import *
+from python.newpostHandler import *
+from python.permalinkHandler import *
+from python.datastore import *
+import re
+import logging
 
 class MainHandler(Handler):
 	def get(self):
+		# display options based on if a user is logged in
 		cookieStr = self.request.cookies.get('user_id')
+		# get all the posts in the datastore by timestamp
+		p = db.GqlQuery("SELECT * from Posts ORDER BY time DESC")
 
 		if cookieStr:
-			self.render("index.html", logout="logout")
+			self.render("index.html", logout="logout", newpost="New Post", posts=p)
 		else:
-			self.render("index.html")	
+			self.render("index.html", posts=p)
+
 
 app = webapp2.WSGIApplication([ ('/', MainHandler),
 								('/signup',SignupHandler),
 								('/welcome', WelcomeHandler),
 								('/login', LoginHandler),
-								('/logout', LogoutHandler)
+								('/logout', LogoutHandler),
+								('/newpost', NewpostHandler),
+								(r'/permalink/(\d+)', PermalinkHandler) #(\d+)indicates a parameter is passed to the get method. The "\d+" will accept all the links that have 1 or more digit after "/blog/post/" path.
 								 ], debug=True)

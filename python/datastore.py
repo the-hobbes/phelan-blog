@@ -38,7 +38,7 @@ class User(db.Model):
     @classmethod
     def register(cls, name, pw, email = None):
         # this one actually creates a new user object, based on the inputs
-        # doesn't actually store it
+        # However, doesn't actually store it
         h = hashing.Hasher()
         uKey = db.Key.from_path('users', 'default')
         
@@ -56,3 +56,19 @@ class User(db.Model):
         if u and h.validatePassword(name, pw, u.pw_hash):
             # if the user exists in the datastore and the password hashes to the right value, return the user object
             return u
+
+class Posts(db.Model):
+    '''
+        Class Posts inherits from db.Model, used to create instances of a "table" Posts in the datastore.
+    '''
+    subject = db.StringProperty(required = True)
+    content = db.TextProperty(required = True)
+    timestamp = db.DateProperty(auto_now_add = True)
+    username = db.StringProperty(required = True)
+    time = db.TimeProperty(auto_now_add = True)
+
+    @classmethod
+    def by_date(cls):
+        # looks up posts by timestamp, in descending order.
+        p = Posts.all().order('-timestamp').get()
+        return p
