@@ -27,6 +27,7 @@ from python.logoutHandler import *
 from python.newpostHandler import *
 from python.permalinkHandler import *
 from python.datastore import *
+from python.perspectiveHandler import *
 import re
 import logging
 
@@ -49,5 +50,6 @@ app = webapp2.WSGIApplication([ ('/', MainHandler),
 								('/login', LoginHandler),
 								('/logout', LogoutHandler),
 								('/newpost', NewpostHandler),
-								(r'/permalink/(\d+)', PermalinkHandler) #(\d+)indicates a parameter is passed to the get method. The "\d+" will accept all the links that have 1 or more digit after "/blog/post/" path.
+								(r'/permalink/(\d+)', PermalinkHandler), #(\d+)indicates a parameter is passed to the get method. The "\d+" will accept all the links that have 1 or more digit after "/blog/post/" path.
+								('/perspective', PerspectiveHandler)
 								 ], debug=True)
