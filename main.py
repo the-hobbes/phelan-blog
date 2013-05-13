@@ -27,7 +27,7 @@ from python.logoutHandler import *
 from python.newpostHandler import *
 from python.permalinkHandler import *
 from python.datastore import *
-from python.perspectiveHandler import *
+
 import re
 import logging
 

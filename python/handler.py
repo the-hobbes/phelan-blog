@@ -5,7 +5,9 @@
 # This base handler provides much of the basic libraries used by the other handlers, as well as a Handler class which 
 # facilitates an easier method for rendering content to jinja templates. 
 # This is done so you can just import this handler file instead of writing the import, template, and Handler information each
-# time
+# time.
+
+# also, this has a bunch of the default methods that handlers may use as well as some small handlers themselves
 
 import webapp2
 import os
@@ -131,3 +133,10 @@ class Handler(webapp2.RequestHandler):
 		uid = self.read_secure_cookie('user_id')
 		# if the cookie exists, store the user object in the self.user variable, whose value is read from the datastore by the id
 		self.user = uid and User.by_id(int(uid[0]))
+
+class PerspectiveHandler(Handler):
+	'''
+		simple handler to render the perspective template
+	'''
+	def get(self):
+		self.render("perspectiveTest.html")
