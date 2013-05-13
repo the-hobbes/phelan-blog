@@ -27,6 +27,7 @@ from python.logoutHandler import *
 from python.newpostHandler import *
 from python.permalinkHandler import *
 from python.datastore import *
+from python.jsonHandling import *
 
 import re
 import logging
@@ -43,7 +44,6 @@ class MainHandler(Handler):
 		else:
 			self.render("index.html", posts=p, loggedin="Login")
 
-
 app = webapp2.WSGIApplication([ ('/', MainHandler),
 								('/signup',SignupHandler),
 								('/welcome', WelcomeHandler),
@@ -51,5 +51,7 @@ app = webapp2.WSGIApplication([ ('/', MainHandler),
 								('/logout', LogoutHandler),
 								('/newpost', NewpostHandler),
 								(r'/permalink/(\d+)', PermalinkHandler), #(\d+)indicates a parameter is passed to the get method. The "\d+" will accept all the links that have 1 or more digit after "/blog/post/" path.
-								('/perspective', PerspectiveHandler)
+								('/perspective', PerspectiveHandler),
+								('/.json', MainJsonHandler),
+								(r'/permalink/(\d+).json', PermalinkJsonHandler)
 								 ], debug=True)
