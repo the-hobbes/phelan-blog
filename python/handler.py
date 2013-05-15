@@ -18,6 +18,8 @@ import logging
 import hashing
 from datastore import *
 
+from google.appengine.api import memcache # import memcache
+
 #set templating directory with jinja. NOTE that jinja escapes html because autoescape = True
 template_dir = os.path.join(os.path.dirname(__file__), '../templates')
 jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir), autoescape = True)
