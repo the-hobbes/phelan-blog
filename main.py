@@ -36,8 +36,9 @@ class MainHandler(Handler):
 	def get(self):
 		# display options based on if a user is logged in
 		cookieStr = self.request.cookies.get('user_id')
-		# get all the posts in the datastore by timestamp
-		p = db.GqlQuery("SELECT * from Posts ORDER BY time DESC")
+
+		# render the posts from the cache
+		p = updateCache()
 
 		if cookieStr:
 			self.render("index.html", logout="logout", newpost="New Post", posts=p)

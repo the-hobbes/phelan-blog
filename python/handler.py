@@ -19,6 +19,7 @@ import hashing
 from datastore import *
 
 from google.appengine.api import memcache # import memcache
+import pickle
 
 #set templating directory with jinja. NOTE that jinja escapes html because autoescape = True
 template_dir = os.path.join(os.path.dirname(__file__), '../templates')
@@ -142,3 +143,35 @@ class PerspectiveHandler(Handler):
 	'''
 	def get(self):
 		self.render("perspectiveTest.html")
+
+# caching methods
+def updateCache(update = False):
+	'''
+		updateCache
+		Used to retrieve the blog posts from the datastore, most recent first. Updates the cache when it needs to. 
+		Parameters:
+			update, a boolean value indicating whether or not the cache needs to be updated. 
+			If update is True, we update the cache- we run the query and update the cache with the result
+			If update is False, then we just pull from the cache, no query is run.
+		Return:
+			posts, a list of the blog posts
+	'''
+	# caching algorimth
+	key = 'top'
+	posts = memcache.get(key)
+
+	# if posts isn't in the database, or we need to update the cache...
+	if posts is None or update:
+		logging.error("DB QUERY") # to show if you've made a database hit
+
+		# get all the posts in the datastore by timestamp
+		posts = db.GqlQuery("SELECT * from Posts ORDER BY time DESC") #remember, posts is a cursor- a pointer to the results in the database.
+
+		# make a list out of the cursor from the query so it is less wasteful
+		# basically caching the result of the query as a list, which actually runs the query
+		posts = list(posts)
+		memcache.set(key, posts) 
+
+	logging.error(posts)
+
+	return posts
