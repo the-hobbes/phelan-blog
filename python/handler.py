@@ -20,6 +20,7 @@ from datastore import *
 
 from google.appengine.api import memcache # import memcache
 import pickle
+import time
 
 #set templating directory with jinja. NOTE that jinja escapes html because autoescape = True
 template_dir = os.path.join(os.path.dirname(__file__), '../templates')
@@ -172,6 +173,6 @@ def updateCache(update = False):
 		posts = list(posts)
 		memcache.set(key, posts) 
 
-	logging.error(posts)
+		# TODO: print the age of the query out on the front page (current time - the time it was updated in the cache)
 
 	return posts
