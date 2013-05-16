@@ -17,9 +17,9 @@ from google.appengine.ext import db
 import logging
 import hashing
 from datastore import *
-
 from google.appengine.api import memcache # import memcache
 import pickle
+from datetime import datetime, timedelta
 import time
 
 #set templating directory with jinja. NOTE that jinja escapes html because autoescape = True
@@ -145,34 +145,90 @@ class PerspectiveHandler(Handler):
 	def get(self):
 		self.render("perspectiveTest.html")
 
-# caching methods
-def updateCache(update = False):
+# ***** caching methods ***** 
+
+def ageSet(key, val):
 	'''
-		updateCache
-		Used to retrieve the blog posts from the datastore, most recent first. Updates the cache when it needs to. 
+		A wrapper for memcache.set(), this also saves the time of the set into the cache.
 		Parameters:
-			update, a boolean value indicating whether or not the cache needs to be updated. 
-			If update is True, we update the cache- we run the query and update the cache with the result
-			If update is False, then we just pull from the cache, no query is run.
-		Return:
-			posts, a list of the blog posts
+			key, the key for the memcache entry
+			val, the value you would like to put into memcache
 	'''
-	# caching algorimth
-	key = 'top'
-	posts = memcache.get(key)
+	# look up current time
+	saveTime = datetime.utcnow() 
+	# store that time, along with the value, in a tuple into memcache
+	memcache.set(key, (val, saveTime))
 
-	# if posts isn't in the database, or we need to update the cache...
-	if posts is None or update:
-		logging.error("DB QUERY") # to show if you've made a database hit
+def ageGet(key):
+	'''
+		A wrapper for the memcache.get() function. Returns both the value and the age of the item as a tuple.
+		Parameters:
+			key, the key for the memcache entry
+		Return:
+			a tuple of the value and the age retrieved by key
+	'''
+	result = memcache.get(key)
+	if result:
+		# get the value and time out of the tuple stored in memcache
+		val, saveTime = result
+		# get the age, in seconds, of the query (total_seconds() is included in timedelta)
+		age = (datetime.utcnow() - saveTime).total_seconds()
+	else:
+		val, age = None, 0
 
-		# get all the posts in the datastore by timestamp
-		posts = db.GqlQuery("SELECT * from Posts ORDER BY time DESC") #remember, posts is a cursor- a pointer to the results in the database.
+	return val, age
 
-		# make a list out of the cursor from the query so it is less wasteful
-		# basically caching the result of the query as a list, which actually runs the query
-		posts = list(posts)
-		memcache.set(key, posts) 
+def addPost(post):
+	'''
+		This is called every time a new post is submitted, from newposthandler. 
+		Parameters:
+			post, the post to be stored
+		Return:
+			the string representation of the unique key identifying the post
+	'''
+	# add to datastore
+	post.put()
+	time.sleep(1) # uuugh need this to give the datastore time to catch up, so that when we add stuff to the cache there is stuff to add.
+	# overwrite the cache, as we have a new post
+	getPosts(update=True) 
+	# return the id
+	return str(post.key().id())
 
-		# TODO: print the age of the query out on the front page (current time - the time it was updated in the cache)
+def getPosts(update = False):
+	'''
+		This is called to actually run the database query and store those results in the cache. The cache is updated (which
+			means the database is queried again) only when something has changed, as indicated by the update flag being turned
+			to true.
+		Parameters:
+			update, a boolean indicating if the cache needs to be refreshed with new information from the database
+	'''
+	# using procedural language (not gql) lookup all the posts
+	# q = Posts.all().order('-time').fetch(limit = 50)
+	q = Posts.all().order('-time').fetch(limit = 50)
+	key = "BLOG"
 
-	return posts
+	# lookup key in memcache
+	posts, age = ageGet(key)
+	# if we must refresh memcache data, do it
+	if update or posts is None:
+		posts = list(q)
+		ageSet(key, posts)
+
+	return posts, age
+
+def ageStr(age):
+	'''
+		Function used to convert the age of the query into a string displaying the number of seconds that has elapsed.
+		Parameters:
+			age, a float indicating how much time has passed since the query was run
+		Returns:
+			s, a nicely formatting string with that information in it
+	'''
+	s = "Queried %s seconds ago."
+	age = int(age)
+
+	# to be gramatically correct...
+	if age == 1:
+		s = s.replace('seconds', 'second')
+
+	return s % age

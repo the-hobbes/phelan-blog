@@ -65,7 +65,7 @@ class Posts(db.Model):
     content = db.TextProperty(required = True)
     timestamp = db.DateProperty(auto_now_add = True)
     username = db.StringProperty(required = True)
-    time = db.DateProperty(auto_now_add = True)
+    time = db.DateTimeProperty(auto_now_add = True)
 
     @classmethod
     def by_date(cls):

@@ -37,13 +37,14 @@ class MainHandler(Handler):
 		# display options based on if a user is logged in
 		cookieStr = self.request.cookies.get('user_id')
 
-		# render the posts from the cache
-		p = updateCache()
+		# retrieve the posts from the cache, as well as the time they were saved to the cache
+		# p = updateCache()
+		p, age = getPosts()
 
 		if cookieStr:
-			self.render("index.html", logout="logout", newpost="New Post", posts=p)
+			self.render("index.html", logout="logout", newpost="New Post", posts=p, elapsedTime=ageStr(age))
 		else:
-			self.render("index.html", posts=p, loggedin="Login")
+			self.render("index.html", posts=p, loggedin="Login", elapsedTime=ageStr(age))
 
 app = webapp2.WSGIApplication([ ('/', MainHandler),
 								('/signup',SignupHandler),

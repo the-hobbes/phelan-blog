@@ -42,18 +42,13 @@ class NewpostHandler(Handler):
 		if subject and content:
 			# success, interact with the datastore entity Posts, creating a new row with the right information information
 			p = Posts(subject = subject, content = content, username = self.user.name)
-			p.put()
-			time.sleep(1) # uuugh need this to give the datastore time to catch up, so that when we add stuff to the cache there is stuff to add.
 
-			# get the id of the post you just made
-			p_id = p.key().id()
-
-			# update the cache with new information
-			posts = updateCache(update = True)
+			# send the new post to the database, and get the id of the post you just made. also updates the cache
+			postId = addPost(p)
 			
 			# then redirect to a permalink for the post, in the form of /ID. Note the string substitution for the key, to be
 			# 	passed on to the get parameter of permalinkhandler
-			self.redirect("/permalink/%s" % str(p.key().id()))
+			self.redirect("/permalink/%s" % postId)
 		else:
 			# failure
 			error = "need both the subject and the content"
