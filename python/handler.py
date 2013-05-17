@@ -232,3 +232,14 @@ def ageStr(age):
 		s = s.replace('seconds', 'second')
 
 	return s % age
+
+class FlushCacheHandler(Handler):
+	'''
+		Handler class used to flush the memcache when /flush is visited.
+	'''
+
+	def get(self):
+		# completely clear out the cache
+		memcache.flush_all()
+		# redirect to home
+		self.redirect("/")

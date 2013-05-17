@@ -55,5 +55,6 @@ app = webapp2.WSGIApplication([ ('/', MainHandler),
 								(r'/permalink/(\d+)', PermalinkHandler), #(\d+)indicates a parameter is passed to the get method. The "\d+" will accept all the links that have 1 or more digit after "/blog/post/" path.
 								('/perspective', PerspectiveHandler),
 								('/.json', MainJsonHandler),
-								(r'/permalink/(\d+).json', PermalinkJsonHandler)
+								(r'/permalink/(\d+).json', PermalinkJsonHandler),
+								('/flush', FlushCacheHandler)
 								 ], debug=True)
