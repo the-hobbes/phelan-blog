@@ -10,6 +10,7 @@ from google.appengine.ext import db
 import logging
 import hashing
 # from datastore import *
+from models.datastore import *
 from google.appengine.api import memcache # import memcache
 import pickle
 from datetime import datetime, timedelta
