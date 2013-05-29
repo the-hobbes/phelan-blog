@@ -16,9 +16,11 @@
 #
 
 from python.handler import *
-import datastore
+from python.datastore import *
+# import datastore
 import hashing
 import logging
+import time
 
 class NewpostHandler(Handler):
 	def get(self):
@@ -40,17 +42,18 @@ class NewpostHandler(Handler):
 		if subject and content:
 			# success, interact with the datastore entity Posts, creating a new row with the right information information
 			p = Posts(subject = subject, content = content, username = self.user.name)
-			p.put()
-			# get the id of the post you just made
-			p_id = p.key().id()
+
+			# send the new post to the database, and get the id of the post you just made. also updates the cache
+			postId = addPost(p)
+			
 			# then redirect to a permalink for the post, in the form of /ID. Note the string substitution for the key, to be
 			# 	passed on to the get parameter of permalinkhandler
-			self.redirect("/permalink/%s" % str(p.key().id()))
+			self.redirect("/permalink/%s" % postId)
 		else:
 			# failure
 			error = "need both the subject and the content"
 			self.renderNewpost(subject, content, error)
 
 	def renderNewpost(self, subject="", content="", error=""):
-		#render the new post page
+		#render the new error post page
 		self.render("newpost.html", subject=subject, content=content, error=error)

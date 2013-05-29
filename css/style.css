@@ -97,3 +97,10 @@ body {
 	font-size: smaller;
 	margin-top: -15px;
 }
+.timeUpdated{
+	margin:0px auto; 
+	width:900px; 
+	color:gray; 
+	margin-top:15px;
+	text-align: center;
+}

@@ -17,6 +17,10 @@ from google.appengine.ext import db
 import logging
 import hashing
 from datastore import *
+from google.appengine.api import memcache # import memcache
+import pickle
+from datetime import datetime, timedelta
+import time
 
 #set templating directory with jinja. NOTE that jinja escapes html because autoescape = True
 template_dir = os.path.join(os.path.dirname(__file__), '../templates')
@@ -140,3 +144,102 @@ class PerspectiveHandler(Handler):
 	'''
 	def get(self):
 		self.render("perspectiveTest.html")
+
+# ***** caching methods ***** 
+
+def ageSet(key, val):
+	'''
+		A wrapper for memcache.set(), this also saves the time of the set into the cache.
+		Parameters:
+			key, the key for the memcache entry
+			val, the value you would like to put into memcache
+	'''
+	# look up current time
+	saveTime = datetime.utcnow() 
+	# store that time, along with the value, in a tuple into memcache
+	memcache.set(key, (val, saveTime))
+
+def ageGet(key):
+	'''
+		A wrapper for the memcache.get() function. Returns both the value and the age of the item as a tuple.
+		Parameters:
+			key, the key for the memcache entry
+		Return:
+			a tuple of the value and the age retrieved by key
+	'''
+	result = memcache.get(key)
+	if result:
+		# get the value and time out of the tuple stored in memcache
+		val, saveTime = result
+		# get the age, in seconds, of the query (total_seconds() is included in timedelta)
+		age = (datetime.utcnow() - saveTime).total_seconds()
+	else:
+		val, age = None, 0
+
+	return val, age
+
+def addPost(post):
+	'''
+		This is called every time a new post is submitted, from newposthandler. 
+		Parameters:
+			post, the post to be stored
+		Return:
+			the string representation of the unique key identifying the post
+	'''
+	# add to datastore
+	post.put()
+	time.sleep(1) # uuugh need this to give the datastore time to catch up, so that when we add stuff to the cache there is stuff to add.
+	# overwrite the cache, as we have a new post
+	getPosts(update=True) 
+	# return the id
+	return str(post.key().id())
+
+def getPosts(update = False):
+	'''
+		This is called to actually run the database query and store those results in the cache. The cache is updated (which
+			means the database is queried again) only when something has changed, as indicated by the update flag being turned
+			to true.
+		Parameters:
+			update, a boolean indicating if the cache needs to be refreshed with new information from the database
+	'''
+	# using procedural language (not gql) lookup all the posts
+	# q = Posts.all().order('-time').fetch(limit = 50)
+	q = Posts.all().order('-time').fetch(limit = 50)
+	key = "BLOG"
+
+	# lookup key in memcache
+	posts, age = ageGet(key)
+	# if we must refresh memcache data, do it
+	if update or posts is None:
+		posts = list(q)
+		ageSet(key, posts)
+
+	return posts, age
+
+def ageStr(age):
+	'''
+		Function used to convert the age of the query into a string displaying the number of seconds that has elapsed.
+		Parameters:
+			age, a float indicating how much time has passed since the query was run
+		Returns:
+			s, a nicely formatting string with that information in it
+	'''
+	s = "Queried %s seconds ago."
+	age = int(age)
+
+	# to be gramatically correct...
+	if age == 1:
+		s = s.replace('seconds', 'second')
+
+	return s % age
+
+class FlushCacheHandler(Handler):
+	'''
+		Handler class used to flush the memcache when /flush is visited.
+	'''
+
+	def get(self):
+		# completely clear out the cache
+		memcache.flush_all()
+		# redirect to home
+		self.redirect("/")

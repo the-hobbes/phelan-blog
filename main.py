@@ -36,13 +36,15 @@ class MainHandler(Handler):
 	def get(self):
 		# display options based on if a user is logged in
 		cookieStr = self.request.cookies.get('user_id')
-		# get all the posts in the datastore by timestamp
-		p = db.GqlQuery("SELECT * from Posts ORDER BY time DESC")
+
+		# retrieve the posts from the cache, as well as the time they were saved to the cache
+		# p = updateCache()
+		p, age = getPosts()
 
 		if cookieStr:
-			self.render("index.html", logout="logout", newpost="New Post", posts=p)
+			self.render("index.html", logout="logout", newpost="New Post", posts=p, elapsedTime=ageStr(age))
 		else:
-			self.render("index.html", posts=p, loggedin="Login")
+			self.render("index.html", posts=p, loggedin="Login", elapsedTime=ageStr(age))
 
 app = webapp2.WSGIApplication([ ('/', MainHandler),
 								('/signup',SignupHandler),
@@ -53,5 +55,6 @@ app = webapp2.WSGIApplication([ ('/', MainHandler),
 								(r'/permalink/(\d+)', PermalinkHandler), #(\d+)indicates a parameter is passed to the get method. The "\d+" will accept all the links that have 1 or more digit after "/blog/post/" path.
 								('/perspective', PerspectiveHandler),
 								('/.json', MainJsonHandler),
-								(r'/permalink/(\d+).json', PermalinkJsonHandler)
+								(r'/permalink/(\d+).json', PermalinkJsonHandler),
+								('/flush', FlushCacheHandler)
 								 ], debug=True)
