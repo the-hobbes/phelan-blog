@@ -237,7 +237,6 @@ class FlushCacheHandler(Handler):
 	'''
 		Handler class used to flush the memcache when /flush is visited.
 	'''
-
 	def get(self):
 		# completely clear out the cache
 		memcache.flush_all()

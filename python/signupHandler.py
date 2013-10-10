@@ -54,7 +54,7 @@ class SignupHandler(Handler):
 				msg = "User already exists"
 				self.render('signupForm.html', error_username = msg)
 			else:
-				u = u = User.register(uname, pword, email)
+				u = User.register(uname, pword, email)
 				u.put()
 
 				self.login(u)
